@@ -6,7 +6,6 @@ edition = "2018"
 
 description = "example rust application packaged for deb distribution"
 homepage = "www.soleinik.com"
-license-file ="LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -20,19 +19,19 @@ section = "utils"
 priority = "optional"
 assets = [
     # binary
-    ["target/release/rust-deb-app", "usr/local/bin/", "755"],
+    ["target/release/rust-deb-daemon", "usr/local/bin/", "755"],
     # config
-    ["etc/conf/rust-deb-daemon.conf", "usr/local/etc/rust-deb-app/rust-deb-daemon.conf", "644"],
+    ["etc/conf/rust-deb-daemon.conf", "usr/local/etc/rust-deb-app/", "644"],
     # systemd unit
-    ["etc/systemd/rust-deb-daemon.service", "lib/systemd/system/rust-deb-daemon.service", "644"],
+    ["etc/systemd/rust-deb-daemon.service", "lib/systemd/system/", "644"],
 
     # assets
-    ["etc/misc/COPYRIGHT", "/usr/share/doc/rust-deb-daemon/COPYRIGHT", "644"],
-    ["LICENSE", "/usr/share/doc/rust-deb-daemon/LICENSE", "644"],
+    ["etc/misc/COPYRIGHT", "/usr/share/doc/rust-deb-daemon/", "644"],
+    ["LICENSE", "/usr/share/doc/rust-deb-daemon/", "644"],
 ]
 
 maintainer-scripts = "etc/pkg-scripts"
 conf-files=[
-    "etc/conf/rust-deb-daemon.conf",
+    "usr/local/etc/conf/rust-deb-daemon.conf",
 ]
 
