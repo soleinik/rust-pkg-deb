@@ -1,9 +1,38 @@
 [package]
-name = "deb-pkg-daemon"
+name = "rust-deb-daemon"
 version = "0.1.0"
 authors = ["soleinik <162591+soleinik@users.noreply.github.com>"]
 edition = "2018"
 
+description = "example rust application packaged for deb distribution"
+homepage = "www.soleinik.com"
+license-file ="LICENSE"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+
+
+[package.metadata.deb]
+depends = "$auto, systemd"
+section = "utils"
+priority = "optional"
+assets = [
+    # binary
+    ["target/release/rust-deb-app", "usr/local/bin/", "755"],
+    # config
+    ["etc/conf/rust-deb-daemon.conf", "usr/local/etc/rust-deb-app/rust-deb-daemon.conf", "644"],
+    # systemd unit
+    ["etc/systemd/rust-deb-daemon.service", "lib/systemd/system/rust-deb-daemon.service", "644"],
+
+    # assets
+    ["etc/misc/COPYRIGHT", "/usr/share/doc/rust-deb-daemon/COPYRIGHT", "644"],
+    ["LICENSE", "/usr/share/doc/rust-deb-daemon/LICENSE", "644"],
+]
+
+maintainer-scripts = "etc/pkg-scripts"
+conf-files=[
+    "etc/conf/rust-deb-daemon.conf",
+]
+

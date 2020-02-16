@@ -1,0 +1,13 @@
+# rust-rpm-daemon.service
+[Unit]
+Description= Rust Test Service
+AssertPathExists=/usr/local/bin/rust-rpm-daemon
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/rust-rpm-daemon %i.conf
+ExecReload=/bin/kill -HUP $MAINPID
+Nice=5
+
+[Install]
+WantedBy=multi-user.target
